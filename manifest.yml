@@ -1,0 +1,5 @@
+---
+applications:
+- name: spring-echo
+  path: target/spring-echo-example-1.0.0.jar
+  buildpack: java_buildpack_offline

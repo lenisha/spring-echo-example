@@ -1,4 +1,4 @@
-package com.waiamu.open;
+package com.test.open;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

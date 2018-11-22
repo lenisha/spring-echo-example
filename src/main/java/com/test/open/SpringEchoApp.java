@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.waiamu.open;
+package com.test.open;
 
 import java.io.IOException;
 import java.util.*;
@@ -26,12 +26,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Controller
 @SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
+@CrossOrigin(maxAge = 3600)
 public class SpringEchoApp {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SpringEchoApp.class); 
@@ -42,6 +47,16 @@ public class SpringEchoApp {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringEchoApp.class, args);
 		LOG.info("Alive and kicking!!!");
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**");
+			}
+		};
 	}
 
 	@RequestMapping(value = "/**", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -63,6 +78,6 @@ public class SpringEchoApp {
 		responseMap.put("body", rawBody != null ? Base64.getEncoder().encodeToString(rawBody) : null);
 		LOG.info("REQUEST: " + request.getParameterMap());
 
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseMap);
+		return ResponseEntity.status(HttpStatus.OK).body(responseMap);
 	}	
 }

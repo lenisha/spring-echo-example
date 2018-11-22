@@ -50,7 +50,7 @@ jar {
     baseName = "spring-echo-example"
     version = version
 //    manifest {
-//    	attributes('Main-Class': 'com.waiamu.open.SpringEchoApp')
+//    	attributes('Main-Class': 'SpringEchoApp')
 //    }
 }
 

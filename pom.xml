@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.waiamu.open</groupId>
+	<groupId>com.test.open</groupId>
 	<artifactId>spring-echo-example</artifactId>
 	<version>1.0.0</version>
 
 	<name>spring-echo-example</name>
 	<description>Spring Boot Echo Example</description>
-	<url>https://github.com/raonigabriel/spring-echo-example/README.md</url>
+	<url>https://github.com/lenisha/spring-echo-example/README.md</url>
 
 	<licenses>
 		<license>
