@@ -4,8 +4,9 @@ WORKDIR /home/gradle
 USER gradle              
 RUN	gradle clean assemble
 
-FROM openjdk:8-alpine
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
 WORKDIR /home/
-COPY --from=builder /home/gradle/build/libs/*.jar /home/
+COPY --from=builder /home/gradle/build/libs/spring-echo-example-1.0.0.jar /home/
 EXPOSE 8080
-ENTRYPOINT [ "java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-jar", "/home/spring-echo-example-1.0.0.jar" ]
+ENTRYPOINT [ "java",  "-noverify","-XX:TieredStopAtLevel=1","-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-jar", "/home/spring-echo-example-1.0.0.jar" ]
