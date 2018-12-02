@@ -6,8 +6,9 @@ az acr build --registry demoaksacr2 --image spring-echo:latest .
 
 #Start container
 export ACR_PASS=$(az acr credential show --name demoaksacr2 --query "passwords[0].value")
-az container create -g springdemo -n springecho --image demoaksacr2.azurecr.io/spring-echo:latest --dns-name-label springecho-demo --ports 8080 --registry-username demoaksacr2 --registry-password $ACR_PASSWORD 
+az container create -g springdemo -n springecho --image demoaksacr2.azurecr.io/spring-echo:latest --dns-name-label springecho-demo --ports 8080 --registry-username demoaksacr2 --registry-password $ACR_PASS
 
 #Logs
 az container logs -g springdemo -n springecho
 
+az container show -g springdemo -n springecho --query instanceView.state
